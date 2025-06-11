@@ -25,9 +25,9 @@ class Solution:
       if root1.val != root2.val:
           return False
 
-      if (self.flipEquiv(root1.left, root2.left) and self.flipEquiv(root1.right, root2.right)):
+      if (self.flipEquiv(root1.left, root2.left) and self.flipEquiv(root1.right, root2.right)): #if two trees are same without flip
           return True
-      if (self.flipEquiv(root1.left, root2.right) and self.flipEquiv(root1.right, root2.left)):
+      if (self.flipEquiv(root1.left, root2.right) and self.flipEquiv(root1.right, root2.left)): # if two trees are same with flip
           return True
       return False
 
