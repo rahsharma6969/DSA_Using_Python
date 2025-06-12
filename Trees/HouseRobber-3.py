@@ -32,3 +32,27 @@ class Solution:
             not_rob = max(left) + max(right)
 
             return (rob, not_rob)
+        
+        return max(helper(root))
+    
+   
+    # def rob(self, root):
+    #     memo = {}
+
+    #     def helper(node):
+    #         if not node:
+    #             return (0, 0)
+
+    #         if node in memo:
+    #             return memo[node]
+
+    #         left = helper(node.left)
+    #         right = helper(node.right)
+
+    #         rob = node.val + left[1] + right[1]
+    #         not_rob = max(left) + max(right)
+
+    #         memo[node] = (rob, not_rob)
+    #         return memo[node]
+
+    #     return max(helper(root))
