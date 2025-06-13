@@ -11,7 +11,8 @@ premium lock icon
 Companies
 Given the root of a binary tree, return the length of the diameter of the tree.
 
-The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+The diameter of a binary tree is the length of the longest path between any two nodes in a tree.
+This path may or may not pass through the root.
 
 The length of a path between two nodes is represented by the number of edges between them.
 
@@ -53,6 +54,12 @@ class Solution:
         return max(lef_height, right_height) + 1
 
 
+
+''' Approach:
+1. Define a TreeNode class to represent each node in the binary tree.
+2. Define a Solution class with methods to calculate the diameter and height of the binary tree.
+3. The diameter is calculated by finding the maximum path length between any two nodes, which is the sum of the heights of the left and right subtrees for each node.
+4. The height of the tree is calculated recursively by finding the maximum height of the left and right subtrees.'''
 c = Solution()
 root = TreeNode(1)
 root.left = TreeNode(2)
