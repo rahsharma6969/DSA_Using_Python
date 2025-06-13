@@ -43,11 +43,27 @@ class Solution:
         result = str(root.val)
         
         # If there is a left child, add its string representation
-        if root.left or root.right:  # Include left child if it exists or if there is a right child
+        
+        if root.left or root.right:                 # Include left child if it exists or if there is a right child
             result += f"({self.tree2str(root.left)})"
         
         # If there is a right child, add its string representation
         if root.right:  # Always include right child if it exists
             result += f"({self.tree2str(root.right)})"
+            
+        # Return the constructed string
         
         return result
+    
+# Example usage:
+if __name__ == "__main__":
+    # Create a binary tree
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(3)
+    root.left.left = TreeNode(4)
+
+    solution = Solution()
+    tree_string = solution.tree2str(root)
+
+    print(tree_string)  # Output: "1(2(4))(3)"
