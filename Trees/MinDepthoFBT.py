@@ -37,6 +37,7 @@ class Solution:
 
         if not root.right:
             return 1+ self.minDepth(root.left)
+        
         return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
     
 # Example usage:
