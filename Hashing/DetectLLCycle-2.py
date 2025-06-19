@@ -55,7 +55,7 @@ class Solution:
                     entry = entry.next
                     slow = slow.next
                 return entry
-        
+        return None
     # Alternate approach using a set to detect cycle in a linked list
 
     def detectCycle(self, head):
@@ -82,3 +82,6 @@ solution = Solution()
 cycle_node = solution.detectCycle(head)       
 
 print(f"Cycle starts at node with value: {cycle_node.val}" if cycle_node else "No cycle detected")
+
+# Time Complexity: O(n), where n is the number of nodes in the linked list.
+# Space Complexity: O(1) for the two-pointer approach, O(n) for the set-based approach.
