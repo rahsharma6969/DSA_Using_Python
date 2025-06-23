@@ -32,4 +32,33 @@ The total cost is 6.'''
 
 
 def minCostClimbingStairs(cost):
+    n = len(cost)
+    def dp(i):
+        if i >= n:
+            return 0
+        return cost[i] + min(dp(i + 1), dp(i + 2))
+    
+    return min(dp(0), dp(1))
+
+
+#Bottom-up dynamic programming approach
+# This approach uses a DP array to store the minimum cost to reach each step.
+def MinCostClimbingStairs(cost):
+    n = len(cost)
+    dp = [0] * (n + 1)
+    
+    for i in range(2, n + 1):
+        dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2])
+        
+    return dp[n]
+
+
+# Example usage
+if __name__ == "__main__":
+    cost = [10, 15, 20]
+    print(minCostClimbingStairs(cost))  # Output: 15
+
+    cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]
+    print(MinCostClimbingStairs(cost))  # Output: 6
+    
     
