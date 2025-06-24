@@ -30,6 +30,8 @@ Explanation: You will start at index 0.
 - Pay 1 and climb one step to reach the top.
 The total cost is 6.'''
 
+# Top-down dynamic programming approach
+# This approach uses recursion with memoization to find the minimum cost to reach the top.
 
 def minCostClimbingStairs(cost):
     n = len(cost)
@@ -43,6 +45,8 @@ def minCostClimbingStairs(cost):
 
 #Bottom-up dynamic programming approach
 # This approach uses a DP array to store the minimum cost to reach each step.
+
+
 def MinCostClimbingStairs(cost):
     n = len(cost)
     dp = [0] * (n + 1)
@@ -56,7 +60,7 @@ def MinCostClimbingStairs(cost):
 # Example usage
 if __name__ == "__main__":
     cost = [10, 15, 20]
-    print(minCostClimbingStairs(cost))  # Output: 15
+    print(MinCostClimbingStairs(cost))  # Output: 15
 
     cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]
     print(MinCostClimbingStairs(cost))  # Output: 6
