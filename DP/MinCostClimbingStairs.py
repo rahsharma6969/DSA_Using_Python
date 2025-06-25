@@ -33,14 +33,19 @@ The total cost is 6.'''
 # Top-down dynamic programming approach
 # This approach uses recursion with memoization to find the minimum cost to reach the top.
 
+from functools import lru_cache
+
 def minCostClimbingStairs(cost):
     n = len(cost)
+
+    @lru_cache(None)
     def dp(i):
         if i >= n:
             return 0
-        return cost[i] + min(dp(i + 1), dp(i + 2))
+        return cost[i] + min(dp(i + 1), dp(i + 2))  #  Calculate the minimum cost to reach the top from step i.
     
     return min(dp(0), dp(1))
+
 
 
 #Bottom-up dynamic programming approach
@@ -49,12 +54,14 @@ def minCostClimbingStairs(cost):
 
 def MinCostClimbingStairs(cost):
     n = len(cost)
-    dp = [0] * (n + 1)
+    dp = [0] * (n + 1)  # Initialize DP array with size n + 1 . All elements are initialized to 0.
     
     for i in range(2, n + 1):
-        dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2])
+        dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2])   #  Calculate the minimum cost to reach step i.
         
     return dp[n]
+
+#App
 
 
 # Example usage
