@@ -67,9 +67,9 @@ def rob_tabulation(nums):
     
     dp = [0] * n
     dp[0] = nums[0]
-    dp[1] = max(nums[0], nums[1])  # Stores max between 0, 1 index 
+    dp[1] = max(nums[0], nums[1])  # Store the maximum amount that can be robbed from the first two houses
     
     for i in range(2, n):
-        dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])  
+        dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
     
     return dp[-1]
