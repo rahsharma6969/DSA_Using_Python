@@ -44,3 +44,21 @@ def insertionSortList(head):
         curr = next_temp
 
     return dummy.next
+
+
+# Example usage
+if __name__ == "__main__":
+    # Create a linked list: 4 -> 2 -> 1 -> 3
+    head = ListNode(4)
+    head.next = ListNode(2)
+    head.next.next = ListNode(1)
+    head.next.next.next = ListNode(3)
+
+    sorted_head = insertionSortList(head)
+
+    # Print the sorted linked list
+    curr = sorted_head
+    while curr:
+        print(curr.val, end=" -> ")
+        curr = curr.next
+    print("None")  # Output: 1 -> 2 -> 3 -> 4 -> None
