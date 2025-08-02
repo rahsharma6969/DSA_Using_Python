@@ -50,8 +50,8 @@ def deleteDuplicates(head):
         # Detect duplicates
         if curr.next and curr.data == curr.next.data:
             dup_val = curr.data
-            while curr and curr.data == dup_val:
-                curr = curr.next
+            while curr and curr.data == dup_val:  
+                curr = curr.next  
             prev.next = curr  # Skip all duplicates
         else:
             prev = curr

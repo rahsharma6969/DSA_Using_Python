@@ -15,7 +15,7 @@ Do not allocate extra space for another array. You must do this by modifying the
 
 
 def removeDuplicates(nums):
-    if not nums:
+    if not nums:   # if not nums or nums is None:
         return 0
     if len(nums) <= 2:
          return len(nums)
