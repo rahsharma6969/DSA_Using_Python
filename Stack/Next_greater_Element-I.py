@@ -22,29 +22,57 @@ Output: [-1,3,-1]
 Explanation: The next greater element for each value of nums1 is as follows:
 - 4 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
 - 1 is underlined in nums2 = [1,3,4,2]. The next greater element is 3.
-- 2 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.'''
+- 2 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+
+The stack only stores indices of elements for which we haven’t yet found the next greater.
+
+Whenever a larger number comes, it is the answer for all smaller numbers before it (from top of the stack).
+
+Each element is pushed and popped at most once → O(n).'''
 
 from typing import List
+# 6  8  0  1  3
 
-class Solution:
-    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
-        # Step 1: Build index map for nums2
-        index_map = {}
-        for i in range(len(nums2)):
-            num = nums2[i]
-            index_map[num] = i
-        result = []
+def nextGreaterElement(nums1, nums2):
+    stack = []
+    next_greater_map = {}
 
-        # Step 2: For each number in nums1
-        for num in nums1:
-            start_index = index_map[num]
-            found = -1
-            # Step 3: Search to the right in nums2
-            for j in range(start_index + 1, len(nums2)):
-                if nums2[j] > num:
-                    found = nums2[j]
-                    break
+    # Iterate nums2 in reverse
+    for num in reversed(nums2):
+        # Maintain monotonic decreasing stack
+        while stack and stack[-1] <= num:
+            stack.pop()
 
-            result.append(found)
+        # If stack is not empty, top is next greater
+        if stack:
+            next_greater_map[num] = stack[-1]
+        else:
+            next_greater_map[num] = -1
 
-        return result
+        # Push current num to stack
+        stack.append(num)
+
+    # Build result for nums1 using the map
+    return [next_greater_map[num] for num in nums1]
+
+
+
+
+
+    
+def nextGreaterElement(nums1, nums2):
+    stack = []
+    next_greater_map = {}
+
+    for num in nums2:
+        while stack and num > stack[-1]:
+            prev = stack.pop()
+            next_greater_map[prev] = num
+        stack.append(num)
+
+    # For remaining elements in stack, no greater element exists
+    for remaining in stack:
+        next_greater_map[remaining] = -1
+
+    # Build result for nums1
+    return [next_greater_map[num] for num in nums1]
