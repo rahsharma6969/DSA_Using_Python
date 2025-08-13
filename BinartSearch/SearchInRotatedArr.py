@@ -23,7 +23,7 @@ You must write an algorithm with O(log n) runtime complexity.
 def search(nums, target):
     left , right = 0, len(nums) -1
     while left <= right:
-        mid = (left + right) // 2  #it is just an index of the middle element not the value
+        mid = (left + right) // 2  
         if nums[mid] == target:
             return mid
         if nums[left] <= nums[mid]:
@@ -38,3 +38,24 @@ def search(nums, target):
             else:
                 right = mid - 1
     return -1
+
+# Tme complexity: O(log n) since we are using binary search
+
+def Search(nums, target):
+    left , right  = 0, len(nums) -1
+    
+    while left < right:
+        mid = ( left + right) // 2
+        
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1 if nums[left] != target else left
+
+
+#Time complexity: O(log n) since we are using binary search
+        
+        

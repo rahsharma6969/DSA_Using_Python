@@ -35,6 +35,27 @@ def majorityElement(nums):
         if count > majority_count:
             return num
     return None  # In case no majority element is found, though the problem guarantees one exists
+
+from collections import Counter
+def MajorityElement(nums):
+    MJ = len(nums) // 2
+    freq_map = Counter(nums)  # O(n) — builds frequency map once
+    
+    for num, count in freq_map.items():   # O(n) — iterate over unique elements
+        if count > MJ:
+            return num
+    return None
+
+
+def MajorityElement(nums):
+    nums.sort()                # O(n log n)
+    candidate = nums[len(nums) // 2]  # Middle element
+    
+    # Verify it's actually a majority
+    if nums.count(candidate) > len(nums) // 2:  # O(n)
+        return candidate
+    return None
+
  
 #Example usage
 nums = [3, 2, 3]

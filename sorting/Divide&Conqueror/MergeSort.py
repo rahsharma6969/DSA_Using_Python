@@ -1,75 +1,35 @@
-''' Implement Merge Sort 
-88. Merge Sorted Array
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
 
-Easy
+    # Divide the array into two halves
+    mid = len(arr) // 2
+    left_half = merge_sort(arr[:mid])
+    right_half = merge_sort(arr[mid:])
 
-Hint
-You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
+    # Merge the sorted halves
+    return merge(left_half, right_half)
 
-Merge nums1 and nums2 into a single array sorted in non-decreasing order.
-
-The final sorted array should not be returned by the function, but instead be stored inside the array nums1. To accommodate this, nums1 has a length of m + n, 
-where the first m elements denote the elements that should be merged, and the last n elements are set to 0 and should be ignored. nums2 has a length of n.
-
- 
-
-Example 1:
-
-Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
-Output: [1,2,2,3,5,6]
-Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
-The result of the merge is [1,2,2,3,5,6] with the underlined elements coming from nums1.'''
-
-def merge(nums1, m, nums2, n):
+def merge(left, right):
     merged = []
     i = j = 0
 
-    # Merge both arrays while comparing elements
-    while i < m and j < n:
-        if nums1[i] < nums2[j]:
-            merged.append(nums1[i])
+    # Merge elements from left and right in sorted order
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            merged.append(left[i])
             i += 1
         else:
-            merged.append(nums2[j])
+            merged.append(right[j])
             j += 1
 
-    # Add remaining elements from nums1
-    
-    while i < m:
-        merged.append(nums1[i])
-        i += 1
+    # Add any remaining elements
+    merged.extend(left[i:])
+    merged.extend(right[j:])
 
-    # Add remaining elements from nums2
-    while j < n:
-        merged.append(nums2[j])
-        j += 1
+    return merged
 
-    # Copy back into nums1
-    for k in range(m + n):
-        nums1[k] = merged[k]
-
-
-
-#Without using extra Space
-
-def MergeSort(nums1 ,nums2 , m, n ):
-    i = m - 1
-    j = n - 2
-    k = m + n -1
-    
-    while i > 0 and j > 0:
-        if nums1[i] > nums2[j]:
-           nums1[k] = nums1[i]
-           i -= 1
-        else:
-            nums1[k] = nums2[j]
-            j -= 1
-        k -=1
-    
-    while j >= 0:
-        nums1[k] = nums2[j]
-        j -= 1
-        k -= 1
-        
-           
-        
+# Example usage
+arr = [38, 27, 43, 3, 9, 82, 10]
+sorted_arr = merge_sort(arr)
+print("Sorted array:", sorted_arr)
